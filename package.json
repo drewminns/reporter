@@ -1,0 +1,46 @@
+{
+  "name": "reporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "fix:other": "yarn prettier --write",
+    "fix:js": "yarn test:js --fix",
+    "fix": "yarn fix:js && yarn fix:other",
+    "prettier": "prettier \"**/*.{json,md,scss,yaml,yml}\"",
+    "test:other": "yarn prettier --list-different",
+    "test:js": "node_modules/.bin/eslint --ext .js .",
+    "test": "yarn test:other && yarn test:js"
+  },
+  "keywords": [],
+  "author": "Drew Minns <drew@playgroundinc.com>",
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts}": [
+      "node_modules/.bin/eslint --fix",
+      "git add"
+    ],
+    "*.{json,md,scss,yaml,yml}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-html": "^5.0.4",
+    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "husky": "^2.2.0",
+    "lint-staged": "^8.1.6",
+    "prettier": "1.17.0"
+  }
+}
