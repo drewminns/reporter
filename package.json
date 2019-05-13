@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "fix:other": "yarn prettier --write",
-    "fix:js": "yarn test:js --fix",
-    "fix": "yarn fix:js && yarn fix:other",
+    "fix:other": "npm run prettier --write",
+    "fix:js": "npm run test:js --fix",
+    "fix": "npm run fix:js && yarn fix:other",
     "prettier": "prettier \"**/*.{json,md,scss,yaml,yml}\"",
-    "test:other": "yarn prettier --list-different",
+    "test:other": "npm run prettier --list-different",
     "test:js": "node_modules/.bin/eslint --ext .js .",
-    "test": "yarn test:other && yarn test:js"
+    "test": "npm run test:other && yarn test:js"
   },
   "keywords": [],
   "author": "Drew Minns <drew@playgroundinc.com>",
