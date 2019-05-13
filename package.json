@@ -16,7 +16,7 @@
   "author": "Drew Minns <drew@playgroundinc.com>",
   "license": "ISC",
   "lint-staged": {
-    "*.{js,ts}": [
+    "*.{js,ts,svelte}": [
       "node_modules/.bin/eslint --fix",
       "git add"
     ],
