@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb-base", "plugin:prettier/recommended"],
+  "extends": ["airbnb-base"],
   "plugins": ["prettier"],
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -18,6 +18,8 @@
     "no-debugger": 0,
     "no-alert": 0,
     "no-await-in-loop": 0,
+    "no-confusing-arrow": "error",
+    "no-mixed-operators": "error",
     "no-return-assign": ["error", "except-parens"],
     "no-restricted-syntax": [
       2,
@@ -51,7 +53,8 @@
         "props": false
       }
     ],
-    "no-console": 0,
+    "object-curly-spacing": 2,
+    "no-console": 1,
     "import/prefer-default-export": 0,
     "import": 0,
     "func-names": 0,
@@ -60,8 +63,8 @@
     "max-len": 0,
     "import/extensions": 0,
     "no-underscore-dangle": 0,
-    "consistent-return": 0,
-    "radix": 0,
+    "consistent-return": 2,
+    "radix": 2,
     "no-shadow": [
       2,
       {
@@ -70,11 +73,11 @@
       }
     ],
     "quotes": [
-      2,
+      "error",
       "single",
       {
         "avoidEscape": true,
-        "allowTemplateLiterals": true
+        "allowTemplateLiterals": false
       }
     ]
   }
