@@ -1,6 +1,6 @@
 {
   "extends": ["airbnb-base"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "cypress"],
   "parserOptions": {
     "ecmaVersion": 2018,
     "ecmaFeatures": {
@@ -15,6 +15,7 @@
     "jest": true
   },
   "rules": {
+    "cypress/globals": true,
     "no-debugger": 0,
     "no-alert": 0,
     "no-await-in-loop": 0,
