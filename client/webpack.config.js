@@ -7,9 +7,7 @@ const FriendlyErrorsWebpackPlugin = require('friendly-errors-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const { IS_PROD } = require('../config');
-
-const mode = IS_PROD || 'development';
+const mode = process.env.NODE_ENV || 'development';
 const isDev = mode === 'development';
 const supportedBrowsers = [
   '>1%',

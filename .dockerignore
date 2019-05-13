@@ -1,0 +1,11 @@
+.dockerignore
+.git
+.gitignore
+.prettierignore
+.prettierrc.json
+package.json
+package-lock.json
+.editorconfig
+.eslintignore
+.eslintrc.json
+node_modules

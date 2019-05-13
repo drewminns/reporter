@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: reporterapp
+      POSTGRES_DB: reporter
+    networks:
+      - reporter-network
+
+  reporter-server:
+    build:
+      context: ./server/
+    command: /usr/app/node_modules/.bin/nodemon src/index.js
+    depends_on:
+      - postgres
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./server/:/usr/app
+      - /usr/app/node_modules
+    links:
+      - postgres
+    networks:
+      - reporter-network
+
+volumes:
+  db_data:
+
+networks:
+  reporter-network:
+    driver: bridge

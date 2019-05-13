@@ -1,19 +1,12 @@
-FROM node:latest
+FROM node:carbon-alpine
 
-RUN mkdir -p /opt/app
+WORKDIR /usr/app
 
-RUN apt-get -q update && apt-get -qy install netcat
-RUN npm i npm@latest -g
+COPY package*.json ./
+RUN npm install -qy
 
-WORKDIR /opt
-COPY package.json package-lock.json* ./
-RUN npm install && npm cache clean --force
-ENV PATH /opt/node_modules/.bin:$PATH
-
-WORKDIR /opt/app
-COPY . /opt/app
-
-RUN chmod +x ./wait-for.sh
-CMD sh -c './wait-for.sh mysql-db:3306 -- sequelize db:migrate && nodemon index.js'
+COPY . .
 
 EXPOSE 5000
+
+CMD ["npm", "start"]

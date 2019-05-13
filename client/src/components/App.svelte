@@ -1,4 +1,7 @@
 <script>
+  import { global } from '../styles/global.js';
+
+  import Nested from './Nested.svelte';
   export let name;
 </script>
 
@@ -8,4 +11,7 @@
   }
 </style>
 
-<h1>Hello {name}!</h1>
+<div class={global}>
+  <h1>Hello {name}!</h1>
+  <Nested />
+</div>
