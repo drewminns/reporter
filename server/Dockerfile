@@ -19,7 +19,7 @@ WORKDIR /srv/app/reporter-server
 COPY package.json /srv/app/reporter-server
 COPY package-lock.json /srv/app/reporter-server
 
-RUN npm install
+RUN npm install -qy
 
 COPY . /srv/app/reporter-server
 

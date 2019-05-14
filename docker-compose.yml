@@ -1,14 +1,6 @@
 # version: '3'
 
 # services:
-#   postgres:
-#     name: reporter-postgres
-#     image: postgres:9.6.2-alpine
-#     environment:
-#       POSTGRES_USER: reporterapp
-#       POSTGRES_DB: reporter
-#     networks:
-#       - reporterappnetwork
 
 #   reporter-client:
 #     name: reporter-client
@@ -41,13 +33,18 @@
 # volumes:
 #   db_data:
 
-# networks:
-#   reporterappnetwork:
-#     driver: bridge
-
 version: '3'
 
 services:
+  ## DB
+  postgres:
+    image: postgres:9.6.2-alpine
+    environment:
+      POSTGRES_USER: reporterapp
+      POSTGRES_DB: reporter
+    networks:
+      - reporterappnetwork
+
   ## Node Server
   server:
     build: ./server
@@ -58,6 +55,8 @@ services:
     volumes:
       - ./server/src:/srv/app/reporter-server/src
     command: npm run dev
+    networks:
+      - reporterappnetwork
 
   ## Client App
   client:
@@ -70,5 +69,9 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./client:/srv/app/reporter-client
-    command: npm run dev
+      - ./client/src:/srv/app/reporter-client/src
+    command: npm run dev:docker
+
+networks:
+  reporterappnetwork:
+    driver: bridge

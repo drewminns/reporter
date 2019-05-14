@@ -24,7 +24,7 @@ const babelLoader = {
 
 module.exports = {
   mode,
-  entry: path.resolve(__dirname, '/src/main.js'),
+  entry: path.resolve(__dirname, '/srv/app/reporter-client/src/main.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: isDev ? 'bundle.js' : 'bundle.[hash:8].js',
