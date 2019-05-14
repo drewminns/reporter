@@ -1,38 +1,3 @@
-# version: '3'
-
-# services:
-
-#   reporter-client:
-#     name: reporter-client
-#     image: node:carbon-alpine
-#     restart: always
-#     ports:
-#       - '8080:8080'
-#     working_dir: /usr/app
-#     volumes:
-#       - ./client:/usr/app
-#     entrypoint: ['npm', 'run', 'dev']
-
-#   reporter-server:
-#     name:
-#     build:
-#       context: ./server/
-#     command: /usr/app/node_modules/.bin/nodemon src/index.js
-#     depends_on:
-#       - postgres
-#     ports:
-#       - '5000:5000'
-#     volumes:
-#       - ./server/:/usr/app
-#       - /usr/app/node_modules
-#     links:
-#       - postgres
-#     networks:
-#       - reporterappnetwork
-
-# volumes:
-#   db_data:
-
 version: '3'
 
 services:

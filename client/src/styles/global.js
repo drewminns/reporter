@@ -1,6 +1,6 @@
 import { css } from 'emotion';
 
-export const global = css`
+export const globalStyles = css`
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

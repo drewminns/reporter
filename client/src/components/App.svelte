@@ -1,5 +1,5 @@
 <script>
-  import { global } from '../styles/global.js';
+  import { globalStyles } from '../styles/global.js';
   import Nested from './Nested.svelte';
 
   export let name;
@@ -11,7 +11,6 @@
   }
 </style>
 
-<div class={global}>
+<div class={globalStyles}>
   <h1>Hello! {name}!</h1>
-  <Nested />
 </div>
