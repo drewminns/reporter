@@ -24,7 +24,7 @@ const babelLoader = {
 
 module.exports = {
   mode,
-  entry: path.resolve(__dirname, 'src/main.js'),
+  entry: path.resolve(__dirname, '/src/main.js'),
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: isDev ? 'bundle.js' : 'bundle.[hash:8].js',
@@ -33,6 +33,7 @@ module.exports = {
   },
   devServer: {
     quiet: true,
+    public: '0.0.0.0:8080',
   },
   module: {
     rules: [
@@ -99,6 +100,11 @@ module.exports = {
         ],
       },
     ],
+  },
+  watchOptions: {
+    ignored: /node_modules/,
+    aggregateTimeout: 300,
+    poll: 1000,
   },
   plugins: [
     !isDev && new CleanWebpackPlugin({ verbose: false }),

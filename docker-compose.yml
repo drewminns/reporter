@@ -1,33 +1,74 @@
+# version: '3'
+
+# services:
+#   postgres:
+#     name: reporter-postgres
+#     image: postgres:9.6.2-alpine
+#     environment:
+#       POSTGRES_USER: reporterapp
+#       POSTGRES_DB: reporter
+#     networks:
+#       - reporterappnetwork
+
+#   reporter-client:
+#     name: reporter-client
+#     image: node:carbon-alpine
+#     restart: always
+#     ports:
+#       - '8080:8080'
+#     working_dir: /usr/app
+#     volumes:
+#       - ./client:/usr/app
+#     entrypoint: ['npm', 'run', 'dev']
+
+#   reporter-server:
+#     name:
+#     build:
+#       context: ./server/
+#     command: /usr/app/node_modules/.bin/nodemon src/index.js
+#     depends_on:
+#       - postgres
+#     ports:
+#       - '5000:5000'
+#     volumes:
+#       - ./server/:/usr/app
+#       - /usr/app/node_modules
+#     links:
+#       - postgres
+#     networks:
+#       - reporterappnetwork
+
+# volumes:
+#   db_data:
+
+# networks:
+#   reporterappnetwork:
+#     driver: bridge
+
 version: '3'
 
 services:
-  postgres:
-    image: postgres:9.6.2-alpine
-    environment:
-      POSTGRES_USER: reporterapp
-      POSTGRES_DB: reporter
-    networks:
-      - reporter-network
-
-  reporter-server:
-    build:
-      context: ./server/
-    command: /usr/app/node_modules/.bin/nodemon src/index.js
-    depends_on:
-      - postgres
+  ## Node Server
+  server:
+    build: ./server
+    expose:
+      - 5000
     ports:
-      - '5000:5000'
+      - 5000:5000
     volumes:
-      - ./server/:/usr/app
-      - /usr/app/node_modules
+      - ./server/src:/srv/app/reporter-server/src
+    command: npm run dev
+
+  ## Client App
+  client:
+    restart: always
     links:
-      - postgres
-    networks:
-      - reporter-network
-
-volumes:
-  db_data:
-
-networks:
-  reporter-network:
-    driver: bridge
+      - server
+    build: ./client
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    volumes:
+      - ./client:/srv/app/reporter-client
+    command: npm run dev

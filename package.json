@@ -10,7 +10,10 @@
     "prettier": "prettier \"**/*.{json,md,scss,yaml,yml}\"",
     "test:other": "npm run prettier --list-different",
     "test:js": "node_modules/.bin/eslint --ext .js .",
-    "test": "npm run test:other && yarn test:js"
+    "test": "npm run test:other && yarn test:js",
+    "start:client": "cd ./client && npm start",
+    "test:cypress": "start-server-and-test start:client http://localhost:8080 cypress:open",
+    "cypress:open": "cypress open"
   },
   "keywords": [],
   "author": "Drew Minns <drew@playgroundinc.com>",
@@ -32,6 +35,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
+    "cypress": "^3.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
@@ -40,8 +44,11 @@
     "eslint-plugin-html": "^5.0.4",
     "eslint-plugin-import": "^2.17.2",
     "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-svelte3": "^1.1.0",
     "husky": "^2.2.0",
     "lint-staged": "^8.1.6",
-    "prettier": "1.17.0"
+    "prettier": "1.17.0",
+    "start-server-and-test": "^1.9.0",
+    "svelte": "^3.3.0"
   }
 }
